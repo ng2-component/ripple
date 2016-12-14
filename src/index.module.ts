@@ -8,4 +8,4 @@ import { Ripple } from './index.directive';
     declarations: [ Ripple ],
     exports: [ Ripple ]
 })
-export class ThirdPartModule{}
+export class RippleModule{}

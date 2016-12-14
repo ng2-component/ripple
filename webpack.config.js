@@ -14,7 +14,7 @@ const path = require('path');
 const env = process.env.NODE_ENV;
 
 //入口文件，根据不同环境, 开发和发布不同
-const index = env == 'pro' ?  './src/index' : './src/container/index'; 
+const index = env == 'pro' ?  './src/index.module' : './src/container/index'; 
 
 console.log('index', index);
 //发布环境下，先删除 build 目录
