@@ -13,11 +13,15 @@ class RippleRenderer{
     private _rippleElement: HTMLElement;
     // 事件监听需要注册的元素
     private _triggerElement: HTMLElement;
+    private _bgColor: string;
+    private _fColor: string;
 
-    constructor(_elementRef: ElementRef, private _eventHandlers: Map<string, (e: Event) => void>){
+    constructor(_elementRef: ElementRef, private _eventHandlers: Map<string, (e: Event) => void>, bgColor: string, fColor: string){
         this._rippleElement = _elementRef.nativeElement;
         this._backgroundDiv = null;
-    }
+        this._bgColor = bgColor;
+        this._fColor = fColor;
+    }   
 
 
     createBackgroundDivIfNeeded() {
@@ -72,7 +76,9 @@ class RippleRenderer{
         rippleDiv.style.top = `${offsetY - radius}px`;
         rippleDiv.style.width = `${2 * radius}px`;
         rippleDiv.style.height = rippleDiv.style.width;
-
+        if(this._fColor) {
+            rippleDiv.style.backgroundColor = this._fColor;
+        }
         rippleDiv.style.transform = `scale(0.001)`;
         rippleDiv.style.transitionDuration = `3000s`;
         rippleDiv.classList.add('ripple-fade-in');
@@ -100,6 +106,9 @@ class RippleRenderer{
     //背景出现
     fadeInBackgroundRipple() {
         this._backgroundDiv.classList.add('ripple-active');
+        if(this._bgColor) {
+            this._backgroundDiv.style.backgroundColor = this._bgColor;
+        }
     }
 
     //背景消失
@@ -121,6 +130,8 @@ export class Ripple implements OnInit, OnDestroy, OnChanges{
     private trigger: Element;
 
     @Input('ripple-disabled') private disabled: boolean;
+    @Input('ripple-background-color') private bgColor: string; 
+    @Input('ripple-color') private fColor: string; 
 
 
     constructor(elementRef:ElementRef){
@@ -128,7 +139,7 @@ export class Ripple implements OnInit, OnDestroy, OnChanges{
         eventHandlers.set('mousedown', (event: MouseEvent) => this._mouseDown(event));
         eventHandlers.set('click', (event: MouseEvent) => this._click(event));
         eventHandlers.set('mouseleave', (event: MouseEvent) => this._mouseLeave(event));
-        this._rippleRenderer = new RippleRenderer(elementRef, eventHandlers);
+        this._rippleRenderer = new RippleRenderer(elementRef, eventHandlers, this.bgColor, this.fColor);
     }
 
     ngOnInit() {

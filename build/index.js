@@ -14130,10 +14130,12 @@ webpackJsonp([0,1],[
 	__webpack_require__(20);
 	//用来操作dom的内部辅助渲染类
 	var RippleRenderer = (function () {
-	    function RippleRenderer(_elementRef, _eventHandlers) {
+	    function RippleRenderer(_elementRef, _eventHandlers, bgColor, fColor) {
 	        this._eventHandlers = _eventHandlers;
 	        this._rippleElement = _elementRef.nativeElement;
 	        this._backgroundDiv = null;
+	        this._bgColor = bgColor;
+	        this._fColor = fColor;
 	    }
 	    RippleRenderer.prototype.createBackgroundDivIfNeeded = function () {
 	        if (!this._backgroundDiv) {
@@ -14181,6 +14183,9 @@ webpackJsonp([0,1],[
 	        rippleDiv.style.top = offsetY - radius + "px";
 	        rippleDiv.style.width = 2 * radius + "px";
 	        rippleDiv.style.height = rippleDiv.style.width;
+	        if (this._fColor) {
+	            rippleDiv.style.backgroundColor = this._fColor;
+	        }
 	        rippleDiv.style.transform = "scale(0.001)";
 	        rippleDiv.style.transitionDuration = "3000s";
 	        rippleDiv.classList.add('ripple-fade-in');
@@ -14203,6 +14208,9 @@ webpackJsonp([0,1],[
 	    //背景出现
 	    RippleRenderer.prototype.fadeInBackgroundRipple = function () {
 	        this._backgroundDiv.classList.add('ripple-active');
+	        if (this._bgColor) {
+	            this._backgroundDiv.style.backgroundColor = this._bgColor;
+	        }
 	    };
 	    //背景消失
 	    RippleRenderer.prototype.fadeOutBackgroundRipple = function () {
@@ -14218,7 +14226,7 @@ webpackJsonp([0,1],[
 	        eventHandlers.set('mousedown', function (event) { return _this._mouseDown(event); });
 	        eventHandlers.set('click', function (event) { return _this._click(event); });
 	        eventHandlers.set('mouseleave', function (event) { return _this._mouseLeave(event); });
-	        this._rippleRenderer = new RippleRenderer(elementRef, eventHandlers);
+	        this._rippleRenderer = new RippleRenderer(elementRef, eventHandlers, this.bgColor, this.fColor);
 	    }
 	    Ripple.prototype.ngOnInit = function () {
 	        // If no trigger element was explicity set, use the host element
@@ -14273,6 +14281,14 @@ webpackJsonp([0,1],[
 	    core_1.Input('ripple-disabled'),
 	    __metadata("design:type", Boolean)
 	], Ripple.prototype, "disabled", void 0);
+	__decorate([
+	    core_1.Input('ripple-background-color'),
+	    __metadata("design:type", String)
+	], Ripple.prototype, "bgColor", void 0);
+	__decorate([
+	    core_1.Input('ripple-color'),
+	    __metadata("design:type", String)
+	], Ripple.prototype, "fColor", void 0);
 	Ripple = __decorate([
 	    core_1.Directive({
 	        selector: '[ripple]'

@@ -22,10 +22,6 @@ Properties:
 | `ripple-trigger` | Element | 当被click后，触发该 ripple 的 dom, 默认是 host.
 | `ripple-color` | string | 自定义的前景色
 | `ripple-background-color` | string | 自定义的背景色
-| `ripple-centered` | boolean | 是否从中心出发，如果 true,ripple animation 的中心就是host元素的中心，否则由事件发生的定位决定.
-| `ripple-max-radius` | number | max-radius 的值
-| `ripple-unbounded` | boolean | 是否可以超过host元素的边界
-| `ripple-focused` | boolean | If true, the background ripple is shown using the current theme's accent color to indicate focus.
 | `ripple-disabled` | boolean | 是否被禁用，如果设置为 true, host 将不会触发该元素。但是不影响代码中直接调用
 
 
