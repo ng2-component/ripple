@@ -27,3 +27,17 @@ Properties:
 | `ripple-unbounded` | boolean | 是否可以超过host元素的边界
 | `ripple-focused` | boolean | If true, the background ripple is shown using the current theme's accent color to indicate focus.
 | `ripple-disabled` | boolean | 是否被禁用，如果设置为 true, host 将不会触发该元素。但是不影响代码中直接调用
+
+
+### 用法
+
+参照 src/container
+
+### 效果
+
+![alt text]( ./ripple.gif)
+
+### todo
+- 目前，只能说完成了第一个阶段的工作.
+- 变量都固定的过于死了
+- 要开放变量，使用户可以完成自定义

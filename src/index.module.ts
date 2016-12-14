@@ -1,12 +1,11 @@
 import { NgModule } from '@angular/core';
 
-import { ComponentDemo } from './index.component';
-import { PropertyDirective } from './index.property.directive';
-import { StructorDirective } from './index.structor.directive';
+
+import { Ripple } from './index.directive';
 
 
 @NgModule({
-    declarations: [ ComponentDemo, PropertyDirective, StructorDirective ],
-    exports: [ ComponentDemo, PropertyDirective, StructorDirective ]
+    declarations: [ Ripple ],
+    exports: [ Ripple ]
 })
 export class ThirdPartModule{}

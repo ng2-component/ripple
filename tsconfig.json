@@ -9,6 +9,7 @@
     "removeComments": false,
     "noImplicitAny": false,
     "outDir": "build",
+    "skipLibCheck": true,
     "types" : [
       "core-js"
     ]
